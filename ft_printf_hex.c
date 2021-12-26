@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cnearing <cnearing@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/26 16:11:00 by cnearing          #+#    #+#             */
+/*   Updated: 2021/12/26 16:11:00 by cnearing         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_putnbr_hex(unsigned long long	nb, char	*base)
@@ -14,11 +26,8 @@ int	ft_putnbr_hex(unsigned long long	nb, char	*base)
 	return (count);
 }
 
-int	ft_printf_hex(va_list	argptr, char	c)
+int	ft_printf_hex(unsigned int	x, char	c)
 {
-	unsigned int	x;
-
-	x = va_arg(argptr, unsigned int);
 	if (c == 'X')
 		return (ft_putnbr_hex(x, "0123456789ABCDEF"));
 	else

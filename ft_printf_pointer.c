@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_pointer.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cnearing <cnearing@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/26 16:11:04 by cnearing          #+#    #+#             */
+/*   Updated: 2021/12/26 16:11:04 by cnearing         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	ft_putpointer(unsigned long long	nb, char	*base, char	*p, int	count)
+void	ft_putpointer(unsigned long long	nb, char	*base,
+						char	*p, int	count)
 {
 	if (nb > 0)
 	{
@@ -13,26 +26,29 @@ void	ft_putpointer(unsigned long long	nb, char	*base, char	*p, int	count)
 
 int	ft_printf_pointer(unsigned long long	nbr)
 {
-	char		*base;
-	char		*p;
+	char		p[16];
 	int			i;
 	static int	count;
+	int			returner;
 
-	base = "0123456789abcdef";
+	returner = 2;
 	count = 0;
 	i = 0;
-	p = malloc(sizeof(char) * 16);
 	while (i < 16)
-	{
-		p[i] = '0';
-		i++;
-	}
-	ft_putpointer(nbr, base, p, count);
+		p[i++] = '0';
+	ft_putpointer(nbr, "0123456789abcdef", p, count);
 	i = 0;
+	while (p[i] == '0')
+		i++;
+	if (i == 17)
+	{
+		write(1, "0", 1);
+		return (3);
+	}
 	while (i < 16)
 	{
-		write(1, &p[i], 1);
-		i++;
+		write(1, &p[i++], 1);
+		returner++;
 	}
-	return (16);
+	return (returner);
 }
